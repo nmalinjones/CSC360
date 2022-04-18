@@ -102,7 +102,7 @@ const Product = class Product {
     constructor(input) {
         let fields = input.split(",");
         this.name = fields[0];
-        this.price = parseInt(fields[1]);
+        this.price = parseFloat(fields[1]);
         this.availability = fields[2];
     }
 
@@ -134,12 +134,7 @@ const Product = class Product {
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 
      */
     static halfOff = (products) => {
-        //console.log(products);
-        //let res = products.map(product => product = new Product(`${product.name},${product.price},${product.availability}`));
-        //let res = products.map(product => console.log(`${product.name},${product.price * 0.5},${product.availability}`));
-        //let res = Product(`${products.name},${product.price * 0.5},${product.availability}`).toString();
-        // console.log(res);
-        //return res;
+        return products.map(product => product = new Product(`${product.name}, ${product.price * 0.5}, ${product.availability}`));
     }
 
     /**
@@ -156,8 +151,16 @@ const Product = class Product {
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat (currency formatting)
      */
     static printProducts = (products) => {
+        function avail(input) { 
+            if (input === 'In Stock'){
+                return 'Yes';
+            } else {
+                return 'No';
+            } 
+        }
+        
         products.forEach(element => {
-            console.log(`Product: ${element.name}, Cost: ${new Intl.NumberFormat('en-Us', {style: 'currency', currency: 'USD'}).format(element.price)}, Availability: ${element.availability}`);
+            console.log(`Product: ${element.name}, Cost: ${new Intl.NumberFormat('en-Us', {style: 'currency', currency: 'USD'}).format(element.price)}, Availability: ${avail(element.availability)}`);
         });
     }
 
