@@ -4,14 +4,38 @@
     <head>
         <meta charset = "utf-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        <link href = "./node_modules/bootstrap/dist/css/bootstrap.min.css" rel ="stylesheet">
     </head>
 
     <body>
-        <p>Hello World</p> 
+        <div class = "row">
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1">Homework 1</span>
+                </div>
+            </nav>
+        </div>
 
-
-        <link href="/node_modules/bootstrap/dist/css/bootstrap.css">
-        <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>    
+        <div class = "container">
+            <div class = "row justify-content-md-center">
+                <form class = "loginForm">
+                    <div class = "col-md-2 offset-md-5">
+                        <label for = "loginForm" class = "form-label">Login Here</label>
+                        <div class = "input-group">
+                            <span class = "input-group-text" id = "user">U</span>
+                            <input type="text" class="form-control" placeholder="Username">
+                        </div>
+                        <div class = "input-group">
+                            <span class = "input-group-text" id = "user">P</span>
+                            <input type="text" class="form-control" placeholder="Password">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
     </body>
 
 </html>
