@@ -14,14 +14,6 @@ export default function Todo({title, description, dateCreated}){
         return !e;
     }
 
-    function displayCheck() {
-        if(complete) {
-            return "true";
-        } else {
-            return "false";
-        }
-    }
-
     return(
         <div>
             <form>
