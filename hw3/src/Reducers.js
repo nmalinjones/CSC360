@@ -16,32 +16,9 @@ function todoReducer(state, action) {
         case "CREATE_TODO":
             return [...state, action.newTodo];
         case "TOGGLE_TODO":
-            console.log('In Toggle Dispatch')
-            console.log(action.todo.id)
-            console.log(action.todo)
-            /*
-            const newState = state.map((t) => {
-                console.log("Current Item :")
-                console.log(t)
-                if(action.id === t.id) {
-                    console.log("Inside Map")
-                    console.log("Found Item")
-                    t = action.todo;
-                }
-                console.log("Finished With Item")
-                console.log(state);
-            });
-            */
-            console.log("Printing State:")
-            console.log(state)
-            return state.map((t) => {
-                if(action.todo.id === t.id) {
-                    console.log("Inside Map")
-                    console.log("Found Item")
-                    t = action.todo;
-                }
-            });;
+            return action.newTodos
         case "DELETE_TODO":
+            return action.delTodos
         default:
             return state;
     }

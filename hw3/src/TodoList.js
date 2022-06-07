@@ -2,15 +2,22 @@ import React from "react";
 import Todo from "./Todo"
 
 export default function TodoList({todos = [], dispatch}) {
-    const updateTodo = (id, todo) => {
+    const updateTodo = (id, updTodo) => {
         console.log('Inside Todo List')
-        dispatch({type: "TOGGLE_TODO", todo})
+        const newTodos = todos.map((todo) => {if (todo.id === id) {return updTodo} else {return todo}})
+        dispatch({type: "TOGGLE_TODO", newTodos})
     }
+
+    const deleteTodo = (id) => {
+        console.log("Inside of TodoList Delete")
+        const delTodos = todos.filter((todo) => todo.id !== id);
+        dispatch({type:"DELETE_TODO", delTodos});
+    }
+
     return (
         <div>
-            {todos.map((t) => (
-                //<Todo title = {t.title} description = {t.description} dateCreated = {t.dateCreated} key = {"todo-" + i} />
-                <Todo {...t} updateTodo = {updateTodo} key = {"todo-" + t.id} />
+            {todos.map((t, i) => (
+                <Todo {...t} updateTodo = {updateTodo} deleteTodo = {deleteTodo} key = {t.id} />
             ))}
         </div>
     )

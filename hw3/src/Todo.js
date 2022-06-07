@@ -1,46 +1,37 @@
 import React, { useState } from "react"
 
-export default function Todo({title, description, complete, dateCreated, dateCompleted, id, updateTodo}){
+export default function Todo({title, description, complete, dateCreated, dateCompleted, id, updateTodo, deleteTodo}){
 
-    //const [complete, setComplete] = useState(false);
-    //const [dateCompleted, setDateCompleted] = useState("");
+    const [check, setCheck] = useState(false);
 
-    /*
-    function handleComplete(evt) {
-        //setComplete(toggle)
-        setDateCompleted(Date.now());
-        
-        //dispatchEvent(type: "TOGGLE_DATE", complete, dateCompleted);
-    }
-
-    function toggle(e) {
-        return !e;
-    }
-    */
-
-    function deleteTodo(evt) {
-        console.log("Deleting")
+    function removeTodo(evt) {
+        console.log("Inside Remove Todo")
+        deleteTodo(id);
     }
     
     function updateComplete(evt) {
         console.log("Inside Todo")
+        setCheck(evt.target.checked);
+
         const updTodo = {
             title,
             description,
-            complete: evt.target.checked,
+            complete: !complete,
             dateCreated,
             dateCompleted: Date.now(),
             id
         }
+
+        console.log(updTodo)
         updateTodo(id, updTodo);
     }
 
     return(
         <div>
             <form>
-                <input type = "checkbox" checked = {complete} onChange = {updateComplete} name = "todo-item" id = {id} />
+                <input type = "checkbox" checked = {check} onChange = {updateComplete} name = "todo-item" id = {id} />
                 <label htmlFor = "todo-item"> {title}: {description} (Date Created: {dateCreated}) Complete: {`${complete}`} (Date Completed: {dateCompleted})</label>
-                <button type = "Submit" value = "Delete" onSubmit={deleteTodo}/>
+                <input type = "button" value = "Delete" onClick={removeTodo}/>
             </form>
         </div>
     )
