@@ -1,18 +1,15 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect, createContext } from "react";
+import {useResource} from 'react-request-hook';
+
 import UserBar from "./UserBar";
 import TodoList from "./TodoList";
 import CreateTodo from "./CreateTodo";
-
-import userReducer from "./Reducers";
-import todoReducer from "./Reducers";
 import appReducer from "./Reducers";
 
-function App() {
-  //const [user, setUser] = useState("");
-  //const [todos, setTodos] = useState([]);
+import { Router, View } from 'react-navi';
+import { mount, route } from 'navi';
 
-  //const [user, dispatchUser] = useReducer(userReducer, "");
-  //const [todos, dispatchTodos] = useReducer(todoReducer, []);
+function App() {
   const [state, dispatch] = useReducer(appReducer, {user: "", todos: []})
 
   return (
