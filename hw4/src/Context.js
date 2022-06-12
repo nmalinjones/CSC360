@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
 
-const StateContext = react.creatContext({
+const StateContext = React.createContext({
     state: {},
     dispatch: () => {}
 })

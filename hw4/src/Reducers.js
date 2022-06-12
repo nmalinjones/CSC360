@@ -19,6 +19,8 @@ function todoReducer(state, action) {
             return action.newTodos
         case "DELETE_TODO":
             return action.delTodos
+        case "FETCH_TODO":
+            return action.todos
         default:
             return state;
     }

@@ -1,15 +1,34 @@
-import React, {useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
+import StateContext from "./Context";
+import { useResource } from "react-request-hook";
+import { useNavigation } from 'react-navi'
 
-export default function CreateTodo({todos, dispatch}) {
+export default function CreateTodo() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const {state, dispatch} = useContext(StateContext);
+    const navigation = useNavigation();
+    const {user} = state;
+
+    const [todo , createTodo ] = useResource(({title, description, complete, dateCreated, dateCompleted, tid}) => ({
+        url: '/todos',
+        method: 'post',
+        data: {title, description, complete, dateCreated, dateCompleted, tid}
+    }))
+
+    useEffect(() => {
+        if(todo && todo.data && todo.isLoading === false) {
+          navigation.navigate(`/todo/${todo.data.id}`)
+        }
+      }, [todo])
 
     function handleTitle (evt) {setTitle(evt.target.value)}
     function handleDescription (evt) {setDescription(evt.target.value)}
     function handleCreate (evt) {
-        const newTodo = {title, description, complete: false, dateCreated: Date.now(), id: Math.floor(Math.random() * 1000000), dateCompleted: null}
+        const newTodo = {title, description, complete: false, dateCreated: Date.now(), tid: Math.floor(Math.random() * 1000000), dateCompleted: null}
 
         //setTodos([newTodo, ...todos]);
+        createTodo({title, description, complete: false, dateCreated: Date.now(), tid: Math.floor(Math.random() * 1000000), dateCompleted: null})
         dispatch({type: "CREATE_TODO", newTodo})
     }
 
