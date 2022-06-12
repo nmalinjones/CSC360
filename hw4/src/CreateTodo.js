@@ -8,7 +8,6 @@ export default function CreateTodo() {
     const [description, setDescription] = useState("");
     const {state, dispatch} = useContext(StateContext);
     const navigation = useNavigation();
-    const {user} = state;
 
     const [todo , createTodo ] = useResource(({title, description, complete, dateCreated, dateCompleted, tid}) => ({
         url: '/todos',
@@ -16,9 +15,10 @@ export default function CreateTodo() {
         data: {title, description, complete, dateCreated, dateCompleted, tid}
     }))
 
+    
     useEffect(() => {
         if(todo && todo.data && todo.isLoading === false) {
-          navigation.navigate(`/todo/${todo.data.id}`)
+          navigation.navigate(`/`)
         }
       }, [todo])
 

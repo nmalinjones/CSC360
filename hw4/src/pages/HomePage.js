@@ -15,7 +15,7 @@ export default function HomePage(){
     
       useEffect(() => {
         if (todos && todos.data) {
-            dispatch({ type: 'FETCH_POSTS', todos: todos.data })
+            dispatch({ type: 'FETCH_TODO', todos: todos.data })
         }
       }, [todos])
 

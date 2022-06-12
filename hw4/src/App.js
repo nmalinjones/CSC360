@@ -1,11 +1,7 @@
-import React, { useState, useReducer, useEffect, createContext } from "react";
-import {useResource} from 'react-request-hook';
+import React, {useReducer, useEffect} from "react";
 
-import UserBar from "./UserBar";
-import TodoList from "./TodoList";
 import CreateTodo from "./CreateTodo";
 import HomePage from "./pages/HomePage";
-import TodoPage from "./pages/TodoPage";
 
 import appReducer from "./Reducers";
 
@@ -19,10 +15,7 @@ function App() {
 
   const routes = mount({
     '/': route({ view: <HomePage /> }),
-    '/todo/create':route({ view: <CreateTodo /> }),
-    '/todo/:id': route(req => {
-        return { view: <TodoPage id={req.params.id} /> }
-    }),
+    '/todo/create':route({ view: <CreateTodo /> })
   })
 
   useEffect(() => {
